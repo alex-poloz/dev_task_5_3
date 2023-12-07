@@ -4,15 +4,17 @@ kind: Pod
 metadata:
   name: app-multi-containerscontainers:
 spec:
+  volumes:
+  - name: html
+    emptyDir: {}
   containers:
-    - image: gcr.io/mimetic-radio-405219/demo:v1.0.0
-      name: app
-      ports:
-        - containerPort: 8000
-          name: http
-
-    - image: nginx
-      name: nginx
-      volumeMounts:
-      - name: html
-        mountPath: /usr/share/nginx/html
+  - name: 1st
+    image: nginx
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: 2nd
+    image: debian
+    volumeMounts:
+    - name: html
+      mountPath: /html
