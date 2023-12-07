@@ -4,9 +4,6 @@ kind: Pod
 metadata:
   name: app-multi-containers
 spec:
-  volumes:
-  - name: html
-    emptyDir: {}
   containers:
   - name: app
     image: gcr.io/mimetic-radio-405219/demo:v1.0.0
@@ -14,10 +11,6 @@ spec:
     - name: html
       mountPath: /usr/share/nginx/html
   - name: 2nd
-    image: nginx
-    ports:
-        - containerPort: 8000
-          name: http
-    volumeMounts:
-    - name: html
-      mountPath: /usr/share/nginx/html
+    image: busybox:latest
+    command: ["/bin/sh", "-c"]
+    args: ["while true; do echo 'Hello from sidecar'; sleep 5; done"]
