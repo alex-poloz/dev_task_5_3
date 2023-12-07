@@ -1,36 +1,4 @@
-# Recommended YAML manifests
 
-## Task steps
-1. Create an [API key](https://platform.openai.com/account/api-keys)   
-
-2. Install and configure [the kubectl-ai plugin](https://github.com/sozercan/kubectl-ai)
-
-3. Practice writing and testing prompts on a local cluster
-```yaml
-$ k ai "create an nginx deployment with 3 replicas"
-✨ Attempting to apply the following manifest:
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-```
-
-4. The resulting manifest in the yaml directory in the root of the repository.
 
 | NAME| PROMPT | DESCRIPTION | EXAMPLE |
 |-|-|-|-|
