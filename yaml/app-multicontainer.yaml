@@ -8,13 +8,16 @@ spec:
   - name: html
     emptyDir: {}
   containers:
-  - name: 1st
-    image: nginx
+  - name: app
+    image: gcr.io/mimetic-radio-405219/demo:v1.0.0
     volumeMounts:
     - name: html
       mountPath: /usr/share/nginx/html
   - name: 2nd
-    image: debian
+    image: nginx
+    ports:
+        - containerPort: 8000
+          name: http
     volumeMounts:
     - name: html
-      mountPath: /html
+      mountPath: /usr/share/nginx/html
